@@ -34,7 +34,6 @@ La búsqueda y el conteo no distinguen mayúsculas de minúsculas. El conteo sum
 | `Laboratorio07.csproj` | Configuración del proyecto de consola en .NET 10. |
 | `.gitignore` | Exclusión de `bin/`, `obj/` y `.vs/`. |
 | `README.md` | Descripción, ejecución y resultados de las pruebas manuales. |
-| `imagenes/diagrama-flujo.svg` | Diagrama del flujo principal del programa. |
 
 Los cinco arreglos son paralelos: una misma posición representa una entrega completa. Tienen ocho elementos cada uno y los códigos son únicos.
 
