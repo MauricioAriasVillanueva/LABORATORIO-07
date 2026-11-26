@@ -9,7 +9,7 @@ Sistema de análisis de entregas digitales para un curso universitario.
 
 ## Estado
 
-Código implementado. Compilación y pruebas manuales pendientes de realizar por el estudiante en Visual Studio Code.
+Código implementado. Se documentaron 15 pruebas manuales realizadas en Visual Studio Code el 25/11/2026, con resultados acordes al código. Los casos sin evidencia de ejecución se mantienen como verificaciones adicionales.
 
 ## Funcionalidades
 
@@ -33,7 +33,8 @@ La búsqueda y el conteo no distinguen mayúsculas de minúsculas. El conteo sum
 | `Program.cs` | Menú, datos simulados, validaciones y métodos recursivos e iterativos. |
 | `Laboratorio07.csproj` | Configuración del proyecto de consola en .NET 10. |
 | `.gitignore` | Exclusión de `bin/`, `obj/` y `.vs/`. |
-| `README.md` | Descripción, ejecución y casos sugeridos para la verificación manual. |
+| `README.md` | Descripción, ejecución y resultados de las pruebas manuales. |
+| `imagenes/diagrama-flujo.svg` | Diagrama del flujo principal del programa. |
 
 Los cinco arreglos son paralelos: una misma posición representa una entrega completa. Tienen ocho elementos cada uno y los códigos son únicos.
 
@@ -60,7 +61,13 @@ Para compilar sin ejecutar:
 dotnet build Laboratorio07.csproj
 ```
 
-Estos comandos son instrucciones para el estudiante; no representan verificaciones ya realizadas.
+Estos comandos permiten reproducir las pruebas en un equipo con el SDK de .NET 10.
+
+## Diagrama de flujo
+
+![Diagrama de flujo del sistema de entregas digitales](imagenes/diagrama-flujo.svg)
+
+El menú se repite después de cada operación o entrada inválida; la opción 0 finaliza el programa.
 
 ## Organización del código
 
@@ -106,35 +113,42 @@ Ambas estrategias recorren hasta n elementos. La recursividad permite expresar e
 
 Riesgos que deben revisarse al modificar el código: omitir el caso base, no avanzar hacia él, acceder al arreglo antes de comprobar su límite y permitir demasiadas llamadas. Los datos actuales son ocho entregas fijas; no se aceptan colecciones grandes desde el menú.
 
-## Casos sugeridos para pruebas manuales
+## Pruebas manuales realizadas
 
-Los resultados esperados se deducen de los datos y las reglas. La columna de resultado obtenido queda pendiente hasta ejecutar cada caso en VS Code.
+Resultados registrados en las capturas de ejecución del 25/11/2026. Se comparó cada salida con el resultado esperado según los datos y las reglas del programa.
 
-| Caso | Entrada o acción | Resultado esperado | Resultado obtenido |
-|---|---|---|---|
-| Listado | Opción 1. | Ocho entregas con sus cinco campos. | Pendiente |
-| Sumatoria | Opción 2. | 122. | Pendiente |
-| Código existente | Opción 3: `n00003`. | `ejercicio_01.cs`, puntaje 12. | Pendiente |
-| Código inexistente | Opción 3: `N99999`. | Estudiante no encontrado. | Pendiente |
-| Búsqueda vacía | Opción 3: solo espacios. | Mensaje de código vacío. | Pendiente |
-| Conteo | Opción 4: `FINAL`. | 3 archivos. | Pendiente |
-| Conteo | Opción 4: `v2`. | 2 archivos. | Pendiente |
-| Palabra inexistente | Opción 4: `foto`. | 0 archivos. | Pendiente |
-| Palabra vacía | Opción 4: solo espacios. | Mensaje de palabra clave vacía. | Pendiente |
-| Caso base factorial | Opción 5: 0. | 1. | Pendiente |
-| Caso recursivo factorial | Opción 5: 4. | 24. | Pendiente |
-| Límite factorial | Opción 5: 12. | 479001600. | Pendiente |
-| Factorial inválido | Opción 5: -1, 13 o texto, en ejecuciones separadas. | Rechazo antes de calcular. | Pendiente |
-| Comparación | Opción 6: `N00003` y `final`. | Suma 122, índice 2 y conteo 3 en ambas versiones. | Pendiente |
-| Comparación sin coincidencias | Opción 6: `N99999` y `foto`. | Suma 122, índice -1 y conteo 0 en ambas versiones. | Pendiente |
-| Caso base potencia | Opción 7: base 3, exponente 0. | 1. | Pendiente |
-| Caso recursivo potencia | Opción 7: base 2, exponente 5. | 32. | Pendiente |
-| Potencia inválida | Base 11 o, con base válida, exponente -1 o 10. | Rechazo antes de calcular. | Pendiente |
-| Menú inválido | Texto, entrada vacía o número 8. | Mensaje de opción no válida; continúa el menú. | Pendiente |
-| Salida | Opción 0. | Mensaje de salida y fin del programa. | Pendiente |
+| N.º | Caso | Entrada | Resultado esperado | Resultado obtenido |
+|---|---|---|---|---|
+| 1 | Sumatoria | Opción 2 | 122 | 122 |
+| 2 | Código existente | Opción 3: N00003 | ejercicio_01.cs; 12 puntos | ejercicio_01.cs; 12 puntos |
+| 3 | Búsqueda vacía | Opción 3: vacío | Rechazar código vacío | El codigo no puede estar vacio. |
+| 4 | Conteo | Opción 4: final | 3 archivos | 3 |
+| 5 | Conteo | Opción 4: v2 | 2 archivos | 2 |
+| 6 | Palabra sin coincidencias | Opción 4: foto | 0 archivos | 0 |
+| 7 | Caso base factorial | Opción 5: 0 | 1 | 1 |
+| 8 | Caso recursivo factorial | Opción 5: 4 | 24 | 24 |
+| 9 | Factorial negativo | Opción 5: -1 | Rechazar entrada | Dato invalido. |
+| 10 | Factorial fuera del límite | Opción 5: 13 | Rechazar entrada | Dato invalido. |
+| 11 | Comparación | Opción 6: N00003 y final | Suma 122, índice 2, conteo 3 en ambas versiones | 122 / 2 / 3 en ambas versiones |
+| 12 | Potencia recursiva | Opción 7: base 2, exponente 5 | 32 | 32 |
+| 13 | Caso base potencia | Opción 7: base 3, exponente 0 | 1 | 1 |
+| 14 | Menú inválido | hola | Rechazar opción | Opcion no valida. |
+| 15 | Salida | Opción 0 | Finalizar programa | Saliendo del sistema; retorno a la terminal |
 
-Para verificar una colección vacía, en una copia local temporal cambia los cinco arreglos por arreglos vacíos del mismo tipo. Las opciones 1 y 2 deben mostrar total 0 y suma 0; la búsqueda debe indicar que no encuentra el código y el conteo debe devolver 0. No hace falta añadir una opción de borrado al sistema. Conserva los ocho registros en la versión de entrega.
+### Comparación de resultados
+
+| Operación | Recursiva | Iterativa |
+|---|---:|---:|
+| Sumatoria | 122 | 122 |
+| Búsqueda de N00003 (índice) | 2 | 2 |
+| Conteo de final | 3 | 3 |
+
+Las tres operaciones coincidieron para las entradas probadas.
+
+### Verificaciones adicionales
+
+La revisión de los casos base permite deducir que un arreglo vacío devuelve 0 en suma y conteo y -1 en búsqueda. Estos resultados, así como la búsqueda de un código inexistente desde la opción 3, no se registran como pruebas ejecutadas porque no se dispone de capturas que los acrediten. Para probar un arreglo vacío se puede utilizar una copia local temporal, sin modificar los ocho registros del proyecto entregado.
 
 ## Alcance
 
-Los datos son simulados y se mantienen en memoria. No se incluye registro interactivo, persistencia, interfaz gráfica ni bibliotecas externas. El informe, las capturas, las conclusiones y los resultados obtenidos de las pruebas se elaboran por separado.
+Los datos son simulados y se mantienen en memoria. No se incluye registro interactivo, persistencia, interfaz gráfica ni bibliotecas externas. El informe académico y las capturas originales se conservan por separado; este README resume los resultados de las pruebas documentadas.
